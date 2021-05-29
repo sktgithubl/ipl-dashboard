@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import TeamTile from '../components/TeamTile';
 import './HomePage.scss'
 
@@ -29,8 +30,10 @@ function HomePage() {
                 <h1 className="app-name">SKT's IPL Dashboard</h1>
             </div>
             <div className="team-grid">
-                {teams.data.map((team) => <TeamTile teamName={team.teamName} />)}
+                {teams.data.map((team, idx) => <TeamTile key={idx} teamName={team.teamName} />)}
             </div>
+            <p>Compare two teams performance against each other</p>
+            <Link to={"/team1vsteam2"}>Compare</Link>
         </div>
     )
 }

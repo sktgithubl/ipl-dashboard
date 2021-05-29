@@ -42,4 +42,9 @@ public class TeamController {
                 teamName, startDate, endDate
         );
     }
+
+    @GetMapping("/search")
+    public List<Match> getMatchesForTwoTeam(@RequestParam String team1, @RequestParam String team2) {
+        return matchRepository.getMatchesBetweenTeams(team1,team2);
+    }
 }

@@ -24,6 +24,12 @@ public interface MatchRepository extends CrudRepository<Match, Long> {
 //            String teamName2, LocalDate date3, LocalDate date4
 //    );
 
+    List<Match> getByTeam1AndTeam2OrTeam1AndTeam2OrderByDateDesc(String team1, String team2, String team3, String team4);
+
+    default List<Match> getMatchesBetweenTeams(String team1, String team2) {
+        return getByTeam1AndTeam2OrTeam1AndTeam2OrderByDateDesc(team1, team2, team2, team1);
+    }
+
     default List<Match> findLatestMatchesByTeam(String teamName, int count) {
         return getByTeam1OrTeam2OrderByDateDesc(teamName,teamName, PageRequest.of(0, count));
     }
